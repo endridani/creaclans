@@ -8,4 +8,6 @@ urlpatterns = [
     path('new/', views.CreateGroup.as_view(), name='create'),
     path('posts/in/<slug>/', views.DetailGroup.as_view(), name='detail'),
     path('delete/<slug>/', views.DeleteGroup.as_view(), name='delete'),
+    path('join/<slug>/', views.JoinGroup.as_view(), name='join'),
+    path('leave/<slug>', views.LeaveGroup.as_view(), name='leave'),
 ]

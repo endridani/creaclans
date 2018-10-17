@@ -9,4 +9,10 @@
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
         </a>
     {% endif %}
+
+    {% if user in group.members.all %}
+        <a href="{% url 'groups:leave' slug=group.slug %}" class="btn btn-outline-warning">Leave</a>
+    {% else %}
+        <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-outline-warning">Join</a>
+    {% endif %}
 {% endblock %}
