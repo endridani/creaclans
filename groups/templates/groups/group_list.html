@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for group in group_list %}
+        <h1>
+        <a class="group-link" href="{% url 'groups:detail' slug=group.slug %}">{{ group.name }}</a></h1>
+        {% if not group %}
+        <h1>No groups to show!</h1>
+        {% endif %}
+    {% endfor %}
+    <a class="btn btn-outline-success" href="{% url 'groups:create' %}">Create New Group</a>
+{% endblock %}

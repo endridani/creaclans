@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Welcome to "{{ group.name }}"</h1>
+    <h3>The Group Leader is: {{ group.leader }}</h3>
+    <h3>Member Count: {{ group.members.count }}</h3>
+    <h3>Date Created: {{ group.created_date }}</h3>
+    {% if user.is_authenticated and group.leader == user %}
+        <a href="{% url 'groups:delete' slug=group.slug %}" title="delete" class="btn btn-danger pull-right">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+        </a>
+    {% endif %}
+{% endblock %}

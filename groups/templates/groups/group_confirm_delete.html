@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Are you sure you want to delete {{ group.name }}?</h1>
+    <form method="POST">
+     {% csrf_token %}
+        <input type="submit" value="Confirm Delete">
+        <a href="{% url 'groups:detail' slug=group.slug %}"
+           class="btn btn-simple btn-primary btn-cancel">Cancel</a>
+    </form>
+{% endblock %}
