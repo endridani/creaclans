@@ -15,4 +15,13 @@
     {% else %}
         <a href="{% url 'groups:join' slug=group.slug %}" class="btn btn-outline-warning">Join</a>
     {% endif %}
+    <hr>
+    {% if group.posts.count == 0 %}
+        <h2 class="no_post">No posts in this group yet!</h2>
+    {% else %}
+        {% for post in group.posts.all %}
+            {% include "posts/_post.html" %}
+        {% endfor %}
+    {% endif %}
+
 {% endblock %}

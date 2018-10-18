@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <h4>{{ post.text }}</h4>
+    <h2>Group: {{ post.group.name }}</h2>
+    <p>{{ post.created_date }}</p>
+
+    {% if user.is_authenticated %}
+        {% if not post.published_date %}
+            {% if post.group.leader == user and not hide_delete %}
+                <a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="btn btn-danger pull-right">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+                </a>
+                <a href="{% url 'posts:publish_post' pk=post.pk %}" class="btn btn-outline-success">Publish Post</a>
+            {% endif %}
+
+            {% if user in post.group.members.all %}
+                <a href="{% url 'posts:update' pk=post.pk %}" class="btn btn-outline-warning">Edit Post</a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

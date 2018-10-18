@@ -1,0 +1,7 @@
+<div class="title">Are you sure you want to delete this post?</div>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Confirm Delete" class="btn btn-danger">
+        <a href="{% url 'posts:detail' pk=post.pk %}"
+           class="btn btn-simple btn-primary btn-cancel">Cancel</a>
+    </form>
