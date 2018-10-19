@@ -1,0 +1,36 @@
+.navbar{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    position: inherit;
+    background: url(../img/logo.png) center center no-repeat;
+    width: 160px;
+    height: 50px;
+    margin-bottom: -10px;
+    background-size: contain;
+}
+
+.navbar-brand:hover {
+    position: inherit;
+    background: url(../img/logo_hover.png) center center no-repeat;
+    width: 160px;
+    height: 50px;
+    margin-bottom: -10px;
+    background-size: contain;
+}
+
+.nav-link{
+    color: #fff;
+}
+
+.nav-link:hover{
+    color: #333;
+}
+
+.navbar-nav > .active > a{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: underline;
+}

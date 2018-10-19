@@ -5,19 +5,23 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">
+<nav class="navbar navbar-expand-lg container-fluid" style="background-color: #b92b27;">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">Navbar</a>
+    <div class="row">
+        <a class="navbar-brand" href="{% url 'home' %}"></a></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{% url 'posts:list' %}">Posts</a>
                 </li>
                 <li class="nav-item">
@@ -45,7 +49,7 @@
     {% endblock %}
 </div>
 
-<script src="{% static 'js/jquery-3.3.1.min.js' %}"
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
