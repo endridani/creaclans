@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'groups',
     'posts',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,7 @@ STATICFILES_DIRS = [
 # LogIn and LogOut redirect
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+# Template Pack
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

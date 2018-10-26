@@ -5,50 +5,87 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/medium-editor.css' %}">
+    <script src="{% static 'js/medium-editor.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/beagle.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500" rel="stylesheet">
+    <title>CreaClans</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg container-fluid" style="background-color: #b92b27;">
-    <div class="container">
-    <div class="row">
-        <a class="navbar-brand" href="{% url 'home' %}"></a></div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<div class="body-color">
+    <nav class="navbar navbar-expand-md container-fluid" style="background-color: #fff;">
+        <div class="container">
+            <div class="row">
+                <a class="navbar-brand" href="{% url 'home' %}">
+
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'posts:list' %}">Posts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'groups:list' %}">Groups</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'posts:create' %}">Create Post</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'posts:draft' %}">Drafts</a>
-                </li>
-            </ul>
-            {% if user.is_authenticated %}
-                <a class="btn btn-outline-danger nav-item" href="{% url 'accounts:logout' %}">Logout</a>
-            {% else %}
-                <a class="btn btn-outline-success nav-item" href="{% url 'accounts:login' %}">Login</a>
-                <a class="btn btn-outline-warning nav-item" href="{% url 'accounts:signup' %}">Signup</a>
-            {% endif %}
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {% block posts %}{% endblock %}">
+                        <a class="nav-link" href="{% url 'posts:list' %}">
+                            <span class="oi oi-copywriting" title="copywriting" aria-hidden="true"></span> Posts
+                        </a>
+                    </li>
+                    <li class="nav-item {% block discover %}{% endblock %}">
+                        <a class="nav-link" href="{% url 'groups:list' %}">
+                            <span class="oi oi-globe" title="globe" aria-hidden="true"></span> Discover
+                        </a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated %}
+                    <ul class="navbar-nav">
+                        <li class="nav-item {% block groups %}{% endblock %}">
+                            <a class="nav-link" href="{% url 'posts:create' %}">
+                                <span class="oi oi-list-rich" title="list-rich" aria-hidden="true"></span> My Groups
+                            </a>
+                        </li>
+                        <li class="nav-item {% block create_post %}{% endblock %}">
+                            <a class="nav-link" href="{% url 'posts:create' %}">
+                                <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Create Post
+                            </a>
+                        </li>
+                        <li class="nav-item {% block drafts %}{% endblock %}">
+                            <a class="nav-link" href="{% url 'posts:draft' %}">
+                                <span class="oi oi-basket" title="basket" aria-hidden="true"></span> Drafts
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="oi oi-person" title="person" aria-hidden="true"></span> {{ user.username }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="#">Change Password</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                {% else %}
+                    <a class="btn btn-success btn-sm nav-item nav-btn" href="{% url 'accounts:login' %}">Login</a>
+                    <a class="btn btn-outline-dark btn-sm nav-item" href="{% url 'accounts:signup' %}">Signup</a>
+                {% endif %}
+            </div>
         </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
     </div>
-</nav>
 
-<div class="container">
-    {% block content %}
-    {% endblock %}
 </div>
-
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>

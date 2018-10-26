@@ -1,8 +1,32 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block create_post %}active{% endblock %}
+
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save" class="btn btn-success btn-lg">
-    </form>
+    <div class="row">
+        <div class="offset-2 col-md-8">
+            <h2 class="title">Create a new post:</h2>
+
+            <div class="alert alert-secondary" role="alert">
+                <small class="form-text text-muted">Your new posts will be saved directly to your Drafts category for
+                    further editing.
+                </small>
+
+                <small class="form-text text-muted">Only the groups that your are a members of, will show up. You
+                    <strong>must</strong> join a group in order to post in one!
+                </small>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-outline-success float-right">
+                    <span class="oi oi-check" title="check" aria-hidden="true"></span> Save to Drafts
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+        var editor = new MediumEditor('.editable');
+    </script>
 {% endblock %}

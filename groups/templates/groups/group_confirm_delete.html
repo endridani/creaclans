@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block groups %}active{% endblock %}
 {% block content %}
     <h1>Are you sure you want to delete {{ group.name }}?</h1>
     <form method="POST">
